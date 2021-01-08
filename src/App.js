@@ -4,6 +4,7 @@ import "./App.css";
 
 function App() {
   const [posts, setPosts] = useState([]);
+  const [comments, setComments] = useState([]);
 
   const fetchIndexData = async () => {
     try {
@@ -11,8 +12,9 @@ function App() {
         mode: "cors",
       });
       const index = await indexResponse.json();
-      setPosts(index);
-      // console.log(posts);
+      setPosts(index.posts);
+      setComments(index.comments);
+      console.log(index);
     } catch (err) {
       console.log(err);
     }
@@ -40,29 +42,41 @@ function App() {
     );
   };
 
+  const Comments = (props) => {
+    const { comments, postId } = props;
+    return comments.map((comment, index) => {
+      if (comment.post._id === postId) {
+        const dateComment = new Date(comment.timeStamp);
+        const formattedDateComment = format(
+          dateComment,
+          "yyyy-MMMM-dd kk:mm:ss"
+        );
+        return (
+          <div className="ui container segment">
+            <p>{comment.content}</p>
+            <p>
+              by {comment.user.username} on {formattedDateComment}
+            </p>
+          </div>
+        );
+      }
+    });
+  };
+
   const Posts = (props) => {
-    const { posts } = props;
+    const { posts, comments } = props;
     return posts.map((post, index) => {
-      console.log(post);
-      console.log(post.comment.user);
       const datePost = new Date(post.timeStamp);
       const formattedDatePost = format(datePost, "yyyy-MMMM-dd kk:mm:ss");
 
-      const dateComment = new Date(post.comment.timeStamp);
-      const formattedDateComment = format(dateComment, "yyyy-MMMM-dd kk:mm:ss");
       return (
         <div className="ui raised very padded text container segment">
           <h2 className="ui header">{post.title}</h2>
           <p>
             by {post.user.username} on {formattedDatePost}
           </p>
-          <p>{posts[index].content}</p>
-          <div className="ui container segment">
-            <p>{post.comment.content}</p>
-            <p>
-              by {post.comment.user.username} on {formattedDateComment}
-            </p>
-          </div>
+          <p>{post.content}</p>
+          <Comments comments={comments} postId={post._id} />
         </div>
       );
     });
@@ -71,7 +85,7 @@ function App() {
   return (
     <>
       <HeaderTitle />
-      <Posts posts={posts} />
+      <Posts posts={posts} comments={comments} />
     </>
   );
 }
