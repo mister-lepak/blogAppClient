@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useFormInput, setUserSession, getUser } from "../Utils/Common";
 import { useParams } from "react-router-dom";
 
@@ -7,10 +7,26 @@ const FormComponent = (props) => {
   const user = getUser();
   const { id } = useParams();
 
-  const title = useFormInput(props.title);
-  const content = useFormInput(props.content);
+  // const title = useFormInput(props.title);
+  const [title, setTitle] = useState(props.title);
+  const [content, setContent] = useState(props.content);
+  // const content = useFormInput(props.content);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setTitle(props.title);
+    setContent(props.content);
+    // console.log(title);
+  }, [props.title, props.content]);
+
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const handleContentChange = (e) => {
+    setContent(e.target.value);
+  };
 
   const processPOST = () => {
     let url = "";
@@ -21,8 +37,8 @@ const FormComponent = (props) => {
     }
     axios
       .post(url, {
-        title: title.value,
-        content: content.value,
+        title: title,
+        content: content,
         user: user.username,
       })
       .then((response) => {
@@ -45,11 +61,21 @@ const FormComponent = (props) => {
     <form className="ui raised very padded text container segmented form">
       <div className="field">
         <label>Post Title</label>
-        <input type="text" name="title" {...title}></input>
+        <input
+          type="text"
+          name="title"
+          value={title}
+          onChange={handleTitleChange}
+        ></input>
       </div>
       <div className="field">
         <label>Post Contents</label>
-        <textarea type="text" name="content" {...content}></textarea>
+        <textarea
+          type="text"
+          name="content"
+          value={content}
+          onChange={handleContentChange}
+        ></textarea>
       </div>
 
       <a

@@ -2,9 +2,9 @@ import axios from "axios";
 import { useEffect } from "react";
 import { getUser } from "../Utils/Common";
 import HeaderTitle from "./HeaderTitle";
-import PostForm from "./PostForm";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import FormComponent from "./PostForm";
 
 const PostUpdate = (props) => {
   const user = getUser();
@@ -28,12 +28,12 @@ const PostUpdate = (props) => {
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
 
   return (
     <>
       <HeaderTitle adminMode={adminMode} {...props} />
-      <PostForm
+      <FormComponent
         title={postDetail.title}
         content={postDetail.content}
         updateMode="true"

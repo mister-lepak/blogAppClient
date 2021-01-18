@@ -49,9 +49,7 @@ const LogIn = (props) => {
           <input
             type="text"
             name="username"
-            key="username1"
             {...username}
-            ref={usernameInput}
             autoComplete="new-password"
           ></input>
         </div>
@@ -60,9 +58,7 @@ const LogIn = (props) => {
           <input
             type="password"
             name="password"
-            key="password1"
             {...password}
-            ref={passwordInput}
             autoComplete="new-password"
           ></input>
         </div>
@@ -89,7 +85,8 @@ const LogIn = (props) => {
   return (
     <>
       <HeaderTitle />
-      <FormComponent key="form1" />
+      {/* <FormComponent key="form1" /> */}
+      {FormComponent()}
     </>
   );
 };
