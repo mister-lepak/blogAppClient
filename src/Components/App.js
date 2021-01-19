@@ -1,22 +1,39 @@
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import HeaderTitle from "./HeaderTitle";
+import CommentForm from "./CommentForm";
+import CommentInput from "./CommentForm";
+import { Link } from "react-router-dom";
 
 function App(props) {
   const user = props.user;
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
+  let loggedInMode = false;
+
   const ExtraButtonDisplay = (props) => {
     if (user) {
+      loggedInMode = true;
       return (
         <>
           <div className="right floated column">
-            <a href={"post/" + props.postId + "/delete"}>
+            <Link
+              to={{
+                pathname: "post/" + props.postId + "/delete",
+                props: props,
+              }}
+            >
               <i className="delete icon" />
-            </a>
-            <a href={"post/" + props.postId + "/update"}>
+            </Link>
+
+            <Link
+              to={{
+                pathname: "post/" + props.postId + "/update",
+                props: props,
+              }}
+            >
               <i className="edit icon" />
-            </a>
+            </Link>
           </div>
         </>
       );
@@ -26,9 +43,12 @@ function App(props) {
 
   const fetchIndexData = async () => {
     try {
-      const indexResponse = await fetch("http://localhost:5000/", {
-        mode: "cors",
-      });
+      const indexResponse = await fetch(
+        "https://afternoon-headland-20920.herokuapp.com/",
+        {
+          mode: "cors",
+        }
+      );
       const index = await indexResponse.json();
       setPosts(index.posts);
       setComments(index.comments);
@@ -40,7 +60,7 @@ function App(props) {
 
   useEffect(() => {
     fetchIndexData();
-  }, []);
+  }, [props]);
 
   const Comments = (props) => {
     const { comments, postId } = props;
@@ -72,7 +92,6 @@ function App(props) {
   const Posts = (props) => {
     const { posts, comments } = props;
     return posts.map((post, index) => {
-      // console.log(post.id);
       const datePost = new Date(post.timeStamp);
       const formattedDatePost = format(datePost, "yyyy-MMMM-dd kk:mm:ss");
 
@@ -95,6 +114,11 @@ function App(props) {
           <div className="ui comments ">
             <h3 className="ui dividing header ">Comments</h3>
             <Comments comments={comments} postId={post._id} />
+            <CommentForm
+              postId={post._id}
+              loggedInMode={loggedInMode}
+              {...props}
+            />
           </div>
         </div>
       );
@@ -103,7 +127,7 @@ function App(props) {
 
   return (
     <>
-      <Posts posts={posts} comments={comments} />
+      <Posts posts={posts} comments={comments} {...props} />
     </>
   );
 }

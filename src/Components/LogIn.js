@@ -14,11 +14,11 @@ const LogIn = (props) => {
   // const [username, setUsername] = useState("");
   // const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     setError(null);
     setLoading(true);
-    axios
-      .post("http://localhost:5000/log-in", {
+    await axios
+      .post("/log-in", {
         username: username.value,
         password: password.value,
       })

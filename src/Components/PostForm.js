@@ -28,31 +28,32 @@ const FormComponent = (props) => {
     setContent(e.target.value);
   };
 
-  const processPOST = () => {
+  const processPOST = async () => {
     let url = "";
     if (props.updateMode) {
-      url = `http://localhost:5000/post/${id}/update`;
+      url = `/post/${id}/update`;
     } else {
-      url = "http://localhost:5000/post/create";
+      url = "/post/create";
     }
-    axios
+    await axios
       .post(url, {
         title: title,
         content: content,
         user: user.username,
       })
       .then((response) => {
-        setLoading(false);
+        // setLoading(false);
         // console.log(response.data.token);
         // console.log(response.data);
-        setUserSession(response.data.token, response.data.user);
-        // props.history.push("/dashboard");
+        // setUserSession(response.data.token, response.data.user);
+        props.history.push("/dashboard");
       })
       .catch((error) => {
-        setLoading(false);
-        if (error.response.status === 401)
-          setError(error.response.data.message);
-        else setError("Something went wrong. Please try again later");
+        console.log(error);
+        // setLoading(false);
+        // if (error.response.status === 401)
+        //   setError(error.response.data.message);
+        // else setError("Something went wrong. Please try again later");
       });
     // props.history.push("/dashboard");
   };
@@ -78,12 +79,7 @@ const FormComponent = (props) => {
         ></textarea>
       </div>
 
-      <a
-        href="/dashboard"
-        className="ui button"
-        type="submit"
-        onClick={processPOST}
-      >
+      <a className="ui button" type="submit" onClick={processPOST}>
         Submit
       </a>
     </form>

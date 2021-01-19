@@ -15,7 +15,7 @@ const PostDetail = (props) => {
 
   const fetchPostData = async () => {
     try {
-      const response = await fetch("http://localhost:5000/post/" + id, {
+      const response = await fetch("/post/" + id, {
         mode: "cors",
       });
 

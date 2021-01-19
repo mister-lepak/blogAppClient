@@ -7,26 +7,32 @@ const DeletePost = (props) => {
   const { id } = useParams();
   const [postDetail, setPostDetail] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/post/${id}/delete`)
+  const deleteGet = async () => {
+    await axios
+      .get(`/post/${id}/delete`)
       .then((response) => {
         setPostDetail(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  useEffect(() => {
+    deleteGet();
   }, []);
 
-  const handleDelete = (props) => {
-    axios
-      .post(`http://localhost:5000/post/${id}/delete`)
+  const handleDelete = async () => {
+    await axios
+      .post(`/post/${id}/delete`)
       .then((response) => {
-        // props.history.push("/dashboard");
+        console.log("success");
       })
       .catch((error) => {
+        console.log("fall to error");
         console.log(error);
       });
+    props.history.push({ pathname: "/dashboard" });
   };
 
   return (
@@ -34,7 +40,7 @@ const DeletePost = (props) => {
       <h3>
         Are you sure that you want to delete this post named {postDetail.title}?
       </h3>
-      <a href="/dashboard">
+      <a>
         <button className="ui positive button" onClick={handleDelete}>
           Yes
         </button>

@@ -9,7 +9,7 @@ const Dashboard = (props) => {
   return (
     <div>
       <HeaderTitle adminMode={true} {...props} username={user.username} />
-      <App user={user.username} />
+      <App user={user.username} {...props} />
     </div>
   );
 };

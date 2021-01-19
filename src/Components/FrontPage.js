@@ -1,11 +1,11 @@
 import App from "./App";
 import HeaderTitle from "./HeaderTitle";
 
-const FrontPage = () => {
+const FrontPage = (props) => {
   return (
     <>
       <HeaderTitle />
-      <App />
+      <App {...props} />
     </>
   );
 };

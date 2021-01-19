@@ -19,15 +19,19 @@ const PostUpdate = (props) => {
     adminMode = false;
   }
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/post/${id}/update`)
+  const updateGet = async () => {
+    await axios
+      .get(`/post/${id}/update`)
       .then((response) => {
         setPostDetail(response.data);
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  useEffect(() => {
+    updateGet();
   }, []);
 
   return (
@@ -37,6 +41,7 @@ const PostUpdate = (props) => {
         title={postDetail.title}
         content={postDetail.content}
         updateMode="true"
+        {...props}
       />
     </>
   );

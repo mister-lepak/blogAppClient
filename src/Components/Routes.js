@@ -16,13 +16,9 @@ import axios from "axios";
 const Routes = () => {
   const [authLoading, setAuthLoading] = useState(true);
 
-  useEffect(() => {
-    const token = getToken();
-    if (!token) {
-      return;
-    }
-    axios
-      .get(`http://localhost:5000/verifyToken?token=${token}`)
+  const verifyTokenGet = async (token) => {
+    await axios
+      .get(`/verifyToken?token=${token}`)
       .then((response) => {
         setUserSession(response.data.token, response.data.user);
         setAuthLoading(false);
@@ -31,6 +27,14 @@ const Routes = () => {
         removeUserSession();
         setAuthLoading(false);
       });
+  };
+
+  useEffect(() => {
+    const token = getToken();
+    if (!token) {
+      return;
+    }
+    verifyTokenGet(token);
   }, []);
 
   if (authLoading && getToken()) {

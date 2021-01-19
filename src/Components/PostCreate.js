@@ -14,7 +14,7 @@ const PostCreate = (props) => {
   return (
     <>
       <HeaderTitle adminMode={adminMode} {...props} username={user.username} />
-      <FormComponent username={user.username} />
+      <FormComponent username={user.username} {...props} />
     </>
   );
 };
