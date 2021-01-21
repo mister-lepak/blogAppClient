@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/blogAppClient/static/js/main.3c553877.chunk.js",
-    "main.js.map": "/blogAppClient/static/js/main.3c553877.chunk.js.map",
+    "main.js": "/blogAppClient/static/js/main.c0785d7b.chunk.js",
+    "main.js.map": "/blogAppClient/static/js/main.c0785d7b.chunk.js.map",
     "runtime-main.js": "/blogAppClient/static/js/runtime-main.83b9f85c.js",
     "runtime-main.js.map": "/blogAppClient/static/js/runtime-main.83b9f85c.js.map",
-    "static/js/2.116bdd32.chunk.js": "/blogAppClient/static/js/2.116bdd32.chunk.js",
-    "static/js/2.116bdd32.chunk.js.map": "/blogAppClient/static/js/2.116bdd32.chunk.js.map",
+    "static/js/2.36c6a1ee.chunk.js": "/blogAppClient/static/js/2.36c6a1ee.chunk.js",
+    "static/js/2.36c6a1ee.chunk.js.map": "/blogAppClient/static/js/2.36c6a1ee.chunk.js.map",
     "index.html": "/blogAppClient/index.html",
-    "static/js/2.116bdd32.chunk.js.LICENSE.txt": "/blogAppClient/static/js/2.116bdd32.chunk.js.LICENSE.txt"
+    "static/js/2.36c6a1ee.chunk.js.LICENSE.txt": "/blogAppClient/static/js/2.36c6a1ee.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.83b9f85c.js",
-    "static/js/2.116bdd32.chunk.js",
-    "static/js/main.3c553877.chunk.js"
+    "static/js/2.36c6a1ee.chunk.js",
+    "static/js/main.c0785d7b.chunk.js"
   ]
 }
