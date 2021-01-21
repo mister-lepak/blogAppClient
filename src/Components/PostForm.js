@@ -31,9 +31,9 @@ const FormComponent = (props) => {
   const processPOST = async () => {
     let url = "";
     if (props.updateMode) {
-      url = `/post/${id}/update`;
+      url = `https://afternoon-headland-20920.herokuapp.com/post/${id}/update`;
     } else {
-      url = "/post/create";
+      url = "https://afternoon-headland-20920.herokuapp.com/post/create";
     }
     await axios
       .post(url, {

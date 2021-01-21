@@ -21,9 +21,10 @@ const PostUpdate = (props) => {
 
   const updateGet = async () => {
     await axios
-      .get(`/post/${id}/update`)
+      .get(`https://afternoon-headland-20920.herokuapp.com/post/${id}/update`)
       .then((response) => {
-        setPostDetail(response.data);
+        setPostDetail(response.data.posts[0]);
+        console.log(postDetail);
       })
       .catch((err) => {
         console.log(err);

@@ -14,7 +14,7 @@ const CommentInput = (props) => {
 
   const handleSubmit = async () => {
     await axios
-      .post("/comment/create", {
+      .post("https://afternoon-headland-20920.herokuapp.com/comment/create", {
         content: content.value,
         user: user.value,
         post: postId,

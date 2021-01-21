@@ -40,6 +40,6 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://mrlepak.github.io/blogAppClient",
+  "homepage": ".",
   "proxy": "https://afternoon-headland-20920.herokuapp.com/"
 }

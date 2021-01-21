@@ -18,7 +18,7 @@ const LogIn = (props) => {
     setError(null);
     setLoading(true);
     await axios
-      .post("/log-in", {
+      .post("https://afternoon-headland-20920.herokuapp.com/log-in", {
         username: username.value,
         password: password.value,
       })
@@ -38,12 +38,17 @@ const LogIn = (props) => {
   };
 
   const FormComponent = () => {
-    // const postSubmission = (e) => {
-    //   e.preventDefault();
-    // };
+    const postSubmission = (e) => {
+      e.preventDefault();
+    };
 
     return (
-      <form className="ui raised very padded text container segmented form">
+      <form
+        className="ui raised very padded text container segmented form"
+        onSubmit={(e) => {
+          postSubmission(e);
+        }}
+      >
         <div className="field">
           <label>Username</label>
           <input

@@ -1,4 +1,5 @@
 import { getUser, removeUserSession } from "../Utils/Common";
+import { Link } from "react-router-dom";
 
 const HeaderTitle = (props) => {
   const user = getUser();
@@ -42,13 +43,13 @@ const HeaderTitle = (props) => {
   } else {
     return (
       <div className="ui dividing clearing segment">
-        <a className="ui left floated header" href="/">
-          Blog App
-        </a>
+        <Link to={{ pathname: "/" }}>
+          <button className="ui left floated header">Blog App</button>
+        </Link>
         <div className="ui right floated header">
-          <a className="ui button" href="/log-in">
-            Log In
-          </a>
+          <Link to={{ pathname: "/log-in" }}>
+            <button className="ui button">Log In</button>
+          </Link>
         </div>
       </div>
     );

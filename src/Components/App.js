@@ -19,7 +19,7 @@ function App(props) {
           <div className="right floated column">
             <Link
               to={{
-                pathname: "post/" + props.postId + "/delete",
+                pathname: "/post/" + props.postId + "/delete",
                 props: props,
               }}
             >
@@ -28,7 +28,7 @@ function App(props) {
 
             <Link
               to={{
-                pathname: "post/" + props.postId + "/update",
+                pathname: "/post/" + props.postId + "/update",
                 props: props,
               }}
             >
@@ -100,7 +100,9 @@ function App(props) {
           <div className="ui grid">
             <div className="left floated fourteen wide column">
               <h2 className="ui header">
-                <a href={"/post/" + post._id}>{post.title}</a>
+                <Link to={{ pathname: "/post/" + post._id, props: props }}>
+                  <a>{post.title}</a>
+                </Link>
               </h2>
             </div>
             <ExtraButtonDisplay postId={post.id} />

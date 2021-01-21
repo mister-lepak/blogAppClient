@@ -9,7 +9,7 @@ const DeletePost = (props) => {
 
   const deleteGet = async () => {
     await axios
-      .get(`/post/${id}/delete`)
+      .get(`https://afternoon-headland-20920.herokuapp.com/post/${id}/delete`)
       .then((response) => {
         setPostDetail(response.data);
       })
@@ -24,7 +24,7 @@ const DeletePost = (props) => {
 
   const handleDelete = async () => {
     await axios
-      .post(`/post/${id}/delete`)
+      .post(`https://afternoon-headland-20920.herokuapp.com/post/${id}/delete`)
       .then((response) => {
         console.log("success");
       })

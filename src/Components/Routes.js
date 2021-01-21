@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { HashRouter, BrowserRouter, Switch, Route } from "react-router-dom";
 import App from "./App";
 import FrontPage from "./FrontPage";
 import PostDetail from "./PostDetail";
@@ -18,7 +18,9 @@ const Routes = () => {
 
   const verifyTokenGet = async (token) => {
     await axios
-      .get(`/verifyToken?token=${token}`)
+      .get(
+        `https://afternoon-headland-20920.herokuapp.com/verifyToken?token=${token}`
+      )
       .then((response) => {
         setUserSession(response.data.token, response.data.user);
         setAuthLoading(false);
@@ -42,7 +44,7 @@ const Routes = () => {
   }
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Switch>
         <Route exact path="/" component={FrontPage} />
         <PrivateRoute exact path="/post/create" component={PostCreate} />
@@ -52,7 +54,7 @@ const Routes = () => {
         <PublicRoute exact path="/log-in" component={LogIn} />
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

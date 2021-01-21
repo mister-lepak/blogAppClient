@@ -15,12 +15,15 @@ const PostDetail = (props) => {
 
   const fetchPostData = async () => {
     try {
-      const response = await fetch("/post/" + id, {
-        mode: "cors",
-      });
+      const response = await fetch(
+        "https://afternoon-headland-20920.herokuapp.com/post/" + id,
+        {
+          mode: "cors",
+        }
+      );
 
       const postResponse = await response.json();
-      setPostDetail(postResponse);
+      setPostDetail(postResponse.posts);
     } catch (err) {
       console.log(err);
     }
