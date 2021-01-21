@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/blogAppClient/static/js/main.72528987.chunk.js",
-    "main.js.map": "/blogAppClient/static/js/main.72528987.chunk.js.map",
+    "main.js": "/blogAppClient/static/js/main.9294906e.chunk.js",
+    "main.js.map": "/blogAppClient/static/js/main.9294906e.chunk.js.map",
     "runtime-main.js": "/blogAppClient/static/js/runtime-main.83b9f85c.js",
     "runtime-main.js.map": "/blogAppClient/static/js/runtime-main.83b9f85c.js.map",
     "static/js/2.6e47b90c.chunk.js": "/blogAppClient/static/js/2.6e47b90c.chunk.js",
@@ -12,6 +12,6 @@
   "entrypoints": [
     "static/js/runtime-main.83b9f85c.js",
     "static/js/2.6e47b90c.chunk.js",
-    "static/js/main.72528987.chunk.js"
+    "static/js/main.9294906e.chunk.js"
   ]
 }
